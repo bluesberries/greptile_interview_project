@@ -92,12 +92,12 @@ func decodeQueryMessage(queryRespBody io.ReadCloser) {
 	}
 }
 
-func search() {
+func search(queryMessage string) {
 	searchData := map[string]interface{}{
 		"messages": []map[string]string{
 			{
 				"id":      "some-id-1",
-				"content": "Functions taht use recursion",
+				"content": queryMessage,
 				"role":    "user",
 			},
 		},

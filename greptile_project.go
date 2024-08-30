@@ -2,5 +2,5 @@ package main
 
 func main() {
 	//query()
-	search()
+	search("Functions that use recursion")
 }
