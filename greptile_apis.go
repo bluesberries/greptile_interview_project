@@ -92,7 +92,7 @@ func decodeQueryMessage(queryRespBody io.ReadCloser) {
 	}
 }
 
-func search(queryMessage string) {
+func search(queryMessage string) []SearchMessage {
 	searchData := map[string]interface{}{
 		"messages": []map[string]string{
 			{
@@ -123,7 +123,8 @@ func search(queryMessage string) {
 	}
 	defer searchResp.Body.Close()
 
-	decodeSearchMessage(searchResp.Body)
+	searchMessages := decodeSearchMessage(searchResp.Body)
+	return searchMessages
 }
 
 type SearchMessage struct {
@@ -136,25 +137,32 @@ type SearchMessage struct {
 	Summary    string
 }
 
-func decodeSearchMessage(searchRespBody io.ReadCloser) {
+func decodeSearchMessage(searchRespBody io.ReadCloser) []SearchMessage {
 	decoder := json.NewDecoder(searchRespBody)
+	var allMessages []SearchMessage
 	for {
 		var messages []SearchMessage
-		if err := decoder.Decode(&messages); err == io.EOF {
+		err := decoder.Decode(&messages)
+		allMessages = append(allMessages, messages...)
+		if err == io.EOF {
 			break
 		} else if err != nil {
 			log.Fatal(err)
 		}
 
-		for i, m := range messages {
-			fmt.Printf("[%d]\n", i)
-			fmt.Printf("repository:\t%s\n", m.Repository)
-			fmt.Printf("remote:\t\t%s\n", m.Remote)
-			fmt.Printf("branch:\t\t%s\n", m.Branch)
-			fmt.Printf("filepath:\t%s\n", m.FilePath)
-			fmt.Printf("linestart:\t%d\n", m.LineStart)
-			fmt.Printf("lineend:\t%d\n", m.LineEnd)
-			fmt.Printf("summary:\t%s\n\n", m.Summary)
-		}
+		/*
+			for i, m := range messages {
+				fmt.Printf("[%d]\n", i)
+				fmt.Printf("repository:\t%s\n", m.Repository)
+				fmt.Printf("remote:\t\t%s\n", m.Remote)
+				fmt.Printf("branch:\t\t%s\n", m.Branch)
+				fmt.Printf("filepath:\t%s\n", m.FilePath)
+				fmt.Printf("linestart:\t%d\n", m.LineStart)
+				fmt.Printf("lineend:\t%d\n", m.LineEnd)
+				fmt.Printf("summary:\t%s\n\n", m.Summary)
+			}
+		*/
 	}
+	return allMessages
+
 }
