@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	fmt.Printf("Hi! I list files that may contain POTENTIAL issues.")
+	fmt.Printf("Hi! I list files that may contain POTENTIAL performance improvements.")
 
 	nl := "nested_loop"
 	r := "recursion"
@@ -16,7 +16,7 @@ func main() {
 
 	responses := make(map[string]string)
 	responses[nl] = "*** Nested loops: Potentially inefficient algorithms ***"
-	responses[r] = "*** Recursion: Potentially excessive recursion (e.g. stack overflow, poor performance from deep recursions) ***"
+	responses[r] = "*** Recursion: Potentially excessive recursion (e.g. poor performance from deep recursions) ***"
 
 	for key := range queries {
 		processAndDisplaySearch(queries[key], responses[key])
