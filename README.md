@@ -1,0 +1,1 @@
+This is a prototype of using Greptile API to search for potential issues in a codebase using predefined prompts.
