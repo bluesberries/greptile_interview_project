@@ -2,8 +2,9 @@
 
 This is a simple prototype using Greptile API to search for potentially inefficient code in a codebase using predefined prompts.
 
-
 It currently returns a list of files that may contain inefficient code. For future improvements, it could return the function and line numbers that the API has identified.
+
+https://github.com/user-attachments/assets/c5e7f4c3-5bd0-4b72-b329-449520d2477a
 
 <h2>Idea</h2>
 
