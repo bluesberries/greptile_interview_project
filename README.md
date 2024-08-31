@@ -1,6 +1,6 @@
 <h1>Project</h1>
 
-This is a simple prototype using Greptile API to search for potentially inefficient code in a codebase using predefined prompts.
+This is a simple prototype using [Greptile API](https://docs.greptile.com/introduction) to search for potentially inefficient code in a codebase using predefined prompts.
 
 It currently returns a list of files that may contain inefficient code. For future improvements, it could return the function and line numbers that the API has identified.
 
